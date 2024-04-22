@@ -8,7 +8,7 @@
             <h4>Productos</h4>
         </div>
         <div class="col-md-6 text-end">
-            <a href="{{ url('/productos/registrar') }}" class="btn btn-primary btn-sm">Nuevo producto</a>
+            <a href="{{ route('productos.create') }}" class="btn btn-primary btn-sm">Nuevo producto</a>
         </div>
         <div class="col-md-12 ">
 
