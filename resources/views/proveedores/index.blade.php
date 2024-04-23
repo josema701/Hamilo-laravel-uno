@@ -9,7 +9,7 @@
                 </h4>
             </div>
             <div class="col-md-6 text-end">
-                <a href="{{ url('/proveedores/registrar') }}" class="btn btn-primary">Nuevo proveedor</a>
+                <a href="{{ url('/proveedores/registrar') }}" class="btn btn-primary btn-sm">Nuevo proveedor</a>
             </div>
             <div class="col-12">
                 <div class="card">
@@ -18,8 +18,8 @@
                             <div class="alert alert-success">{{ Session::get('success') }}</div>
                         @endif
                         <div class="table-responsive">
-                            <table class="table">
-                                <thead class="table-dark">
+                            <table class="table table-bordered">
+                                <thead >
                                     <tr>
                                         <th>Item</th>
                                         <th>Nombres y Apellidos</th>
@@ -39,19 +39,27 @@
                                             <td>{{ $row->identificacion }}</td>
                                             <td>
                                                 @if ($row->estado)
-                                                <span class="badge bg-success">Activo</span>@else<span
-                                                        class="badge bg-danger">Inactivo</span>
+                                                    <span class="badge bg-success">Activo</span>
+                                                @else
+                                                    <span class="badge bg-danger">Inactivo</span>
                                                 @endif
                                             </td>
                                             <td>{{ $row->usuario->name }}</td>
                                             <td>
-                                                <div class="btn-group">
-                                                    <form action="{{ url('/proveedores/' . $row->id)}}" method="POST">
-                                                        @method('DELETE')
-                                                        @csrf
-                                                        <button type="submit" class="btn btn-danger btn-sm">🚫</button>
-                                                    </form>
-                                                </div>
+                                                <a href="{{ url('/proveedores/actualizar/' . $row->id ) }}" class="btn btn-sm btn-warning">Edit</a>
+
+                                                @if ($row->estado)
+                                                    <a href="{{ url('/proveedores/estado/' . $row->id ) }}" class="btn btn-sm btn-danger">Inhab</a>
+                                                @else
+                                                    <a href="{{ url('/proveedores/estado/' . $row->id ) }}" class="btn btn-sm btn-primary">Hab</a>
+                                                    <div class="btn-group">
+                                                        <form action="{{ url('/proveedores/' . $row->id)}}" method="POST">
+                                                            @method('DELETE')
+                                                            @csrf
+                                                            <button type="submit" class="btn btn-danger btn-sm">🚫</button>
+                                                        </form>
+                                                    </div>
+                                                @endif
                                             </td>
                                         </tr>
                                     @endforeach
