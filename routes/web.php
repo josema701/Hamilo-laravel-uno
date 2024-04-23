@@ -40,6 +40,15 @@ Route::group(['middleware' => ['auth']], function () {
     Route::put('/proveedores/actualizar/{id}', [App\Http\Controllers\ProveedorController::class, 'update']);
     Route::get('/proveedores/estado/{id}', [App\Http\Controllers\ProveedorController::class, 'cambiarEstado']);
 
-    // CLIENTES
+    // CLIENTES 
     Route::get('/clientes', [App\Http\Controllers\ClienteController::class, 'index']);
+    Route::get('/clientes/registrar', [App\Http\Controllers\ClienteController::class, 'create']);
+    Route::post('/clientes', [App\Http\Controllers\ClienteController::class, 'store']);
+    Route::get('/clientes/actualizar/{id}', [App\Http\Controllers\ClienteController::class, 'edit']);
+    Route::put('/clientes/{id}', [App\Http\Controllers\ClienteController::class, 'update']);
+    Route::get('/clientes/estado/{id}', [App\Http\Controllers\ClienteController::class, 'cambiarEstado']);
+
+    //COMPRAS 
+    Route::get('/compras', [App\Http\Controllers\ComprasController::class, 'index']);
+    Route::get('/compras/registrar', [App\Http\Controllers\ComprasController::class, 'create']);
 });
