@@ -56,4 +56,15 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/compras/incrementar-carrito/{id}', [App\Http\Controllers\ComprasDetalleTemporalController::class, 'addCantidad']);
     Route::get('/compras/decrementar-carrito/{id}', [App\Http\Controllers\ComprasDetalleTemporalController::class, 'restarCantidad']);
     Route::post('/compras/guardar', [App\Http\Controllers\ComprasDetalleTemporalController::class, 'terminarCompra']);
+    Route::get('/compras/{id}', [App\Http\Controllers\ComprasController::class, 'show']);
+    Route::get('/compras/estado/{id}', [App\Http\Controllers\ComprasController::class, 'estado']);
+
+    //VENTAS
+    Route::get('/ventas', [App\Http\Controllers\VentasController::class, 'index']);
+    Route::get('/ventas/registrar', [App\Http\Controllers\VentasDetalleTemporalController::class, 'create']);
+    Route::get('/ventas/add-carrito/{id}', [App\Http\Controllers\VentasDetalleTemporalController::class, 'carrito']);
+    Route::get('/ventas/incrementar-carrito/{id}', [App\Http\Controllers\VentasDetalleTemporalController::class, 'addCantidad']);
+    Route::get('/ventas/decrementar-carrito/{id}', [App\Http\Controllers\VentasDetalleTemporalController::class, 'restarCantidad']);
+    Route::get('/ventas/remove-carrito/{id}', [App\Http\Controllers\VentasDetalleTemporalController::class, 'removeCarrito']);
+    Route::post('/ventas/guardar', [App\Http\Controllers\VentasDetalleTemporalController::class, 'terminarVenta']);
 });

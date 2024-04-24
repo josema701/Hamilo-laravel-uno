@@ -81,6 +81,9 @@ class ComprasDetalleTemporalController extends Controller
         $resultado = ComprasDetalleTemporal::selectRaw('SUM(total) as suma')->where('usuario_id', auth()->user()->id)->first();
         $total = $resultado->suma;
         $carritos = ComprasDetalleTemporal::where('usuario_id', auth()->user()->id)->get();
+        if ($resultado->suma == null) {
+            return back()->with('error', 'Necesita agregar productos al carrito.');
+        }
         try {
             DB::beginTransaction();
             $item = new Compras();
@@ -96,7 +99,13 @@ class ComprasDetalleTemporalController extends Controller
                 $item2->precio_unitario = $row->precio_unitario;
                 $item2->total = $row->total;
                 $item2->save();
+                //Sumamos la nueva cantidad de un producto
+                $item3 = Productos::find($row->producto_id);
+                $nueva_cantidad = $item3->cantidad + $row->cantidad;
+                $item3->cantidad = $nueva_cantidad;
+                $item3->save();
             }
+            //Eliminamos todos los registros del usuario logueado
             ComprasDetalleTemporal::where('usuario_id', auth()->user()->id)->delete();
             //realizamos las consultas a la base de datos
             DB::commit();

@@ -22,7 +22,7 @@
                                         <th>Nombre</th>
                                         <th>Codigo</th>
                                         <th>Cantidad</th>
-                                        <th>Precio <small class="text-danger">(Compra)</small></th>
+                                        <th>Precio <small class="text-danger">(venta)</small></th>
                                         <th>Acciones</th>
                                     </tr>
                                 </thead>
@@ -32,9 +32,9 @@
                                             <td>{{ $item->nombre }}</td>
                                             <td>{{ $item->codigo }}</td>
                                             <td>{{ $item->cantidad }}</td>
-                                            <td>{{ $item->precio_compra }}</td>
+                                            <td>{{ $item->precio_venta }}</td>
                                             <td>
-                                                <a href="{{ url('/compras/add-carrito/' . $item->id) }}"
+                                                <a href="{{ url('/ventas/add-carrito/' . $item->id) }}"
                                                     class="btn btn-sm btn-primary">➕</a>
                                             </td>
                                         </tr>
@@ -51,20 +51,20 @@
                     <div class="card-header">
                         <h4 class="card-title">🛒 Carrito</h4>
                     </div>
-                    <form action="{{ url('/compras/guardar') }}" method="POST" class="needs-validation" novalidate>
+                    <form action="{{ url('/ventas/guardar') }}" method="POST" class="needs-validation" novalidate>
                         @csrf
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-12">
-                                    <label for="proveedor_id">Proveedor</label>
-                                    <select name="proveedor_id" id="proveedor_id" class="form-control" required>
+                                    <label for="cliente_id">Cliente</label>
+                                    <select name="cliente_id" id="cliente_id" class="form-control" required>
                                         <option value="">Seleccione</option>
-                                        @foreach ($proveedor as $item)
+                                        @foreach ($cliente as $item)
                                             <option value="{{ $item->id }}">{{ $item->nombre . ' ' . $item->apellido }}
                                             </option>
                                         @endforeach
                                     </select>
-                                    @error('proveedor_id')
+                                    @error('cliente_id')
                                         <small class="text-danger">{{ $message }}</small>
                                     @enderror
                                     <div class="valid-feedback">
@@ -92,18 +92,18 @@
                                                 <td>{{ $item->productos->nombre }}</td>
                                                 <td>
                                                     <div class="btn-group">
-                                                        <a href="{{ url('/compras/decrementar-carrito/' . $item->id) }}"
+                                                        <a href="{{ url('/ventas/decrementar-carrito/' . $item->id) }}"
                                                             class="btn btn-danger btn-sm">➖</a>
                                                         <button type="button"
                                                             class="btn btn-outline-primary btn-sm">{{ $item->cantidad }}</button>
-                                                        <a href="{{ url('/compras/incrementar-carrito/' . $item->id) }}"
+                                                        <a href="{{ url('/ventas/incrementar-carrito/' . $item->id) }}"
                                                             class="btn btn-success btn-sm">➕</a>
                                                     </div>
                                                 </td>
                                                 <td>{{ $item->precio_unitario }}</td>
                                                 <td>{{ $item->total }}</td>
                                                 <td>
-                                                    <a href="{{ url('/compras/remove-carrito/' . $item->id) }}"
+                                                    <a href="{{ url('/ventas/remove-carrito/' . $item->id) }}"
                                                         class="btn btn-sm btn-danger">🚫</a>
                                                 </td>
                                             </tr>
@@ -122,7 +122,7 @@
                         </div>
                         <div class="card-footer text-end">
                             <a href="{{ url('/compras') }}" class="btn btn-danger">Volver</a>
-                            <button type="submit" class="btn btn-warning">Terminar Compra</button>
+                            <button type="submit" class="btn btn-warning">Terminar Venta</button>
                         </div>
                     </form>
                 </div>

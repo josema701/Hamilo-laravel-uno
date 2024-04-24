@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Compras;
+use App\Models\ComprasDetalle;
 use App\Models\Productos;
 use Illuminate\Http\Request;
 
@@ -13,7 +14,7 @@ class ComprasController extends Controller
      */
     public function index()
     {
-        $compras = Compras::with('usuario')->with('proveedores')->paginate(5);
+        $compras = Compras::with('usuario')->with('proveedores')->orderBy('id', 'desc')->paginate(5);
         return view('compras.index', compact('compras'));
     }
 
@@ -36,9 +37,10 @@ class ComprasController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Compras $compras)
+    public function show(string $id)
     {
-        //
+        $detalles = ComprasDetalle::where('compra_id', $id)->with('productos')->get();
+        return view('compras.detalle', compact('detalles'));
     }
 
     /**
@@ -63,5 +65,16 @@ class ComprasController extends Controller
     public function destroy(Compras $compras)
     {
         //
+    }
+    public function estado(string $id)
+    {
+        $item = Compras::find($id);
+        $item->estado = !$item->estado;
+        if($item->save())
+        {
+            return redirect('/compras')->with('success', 'Estado modificado correctamente.');
+        }{
+            return redirect('/compras')->with('error', 'No se puede modificar el estado.');
+        }
     }
 }

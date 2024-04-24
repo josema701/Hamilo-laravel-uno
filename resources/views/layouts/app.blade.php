@@ -48,6 +48,9 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ url('/compras') }}">Compras</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url('/ventas') }}">Ventas</a>
+                            </li>
                         @endauth
 
                     </ul>

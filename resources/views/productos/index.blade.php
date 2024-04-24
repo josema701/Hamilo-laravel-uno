@@ -24,6 +24,7 @@
                                         <th>id</th>
                                         <th>Codigo</th>
                                         <th>Nombre</th>
+                                        <th>Stock</th>
                                         <th>Precio compra</th>
                                         <th>Precio venta</th>
                                         <th>Descripción</th>
@@ -38,6 +39,7 @@
                                             <td>{{ $item->id }}</td>
                                             <td>{{ $item->codigo }}</td>
                                             <td>{{ $item->nombre }}</td>
+                                            <td>{{ $item->cantidad }}</td>
                                             <td>{{ $item->precio_compra }}</td>
                                             <td>{{ $item->precio_venta }}</td>
                                             <td>{{ $item->descripcion }}</td>
