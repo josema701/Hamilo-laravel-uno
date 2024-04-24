@@ -13,7 +13,7 @@ class ComprasController extends Controller
      */
     public function index()
     {
-        $compras = Compras::with('usuarios')->with('proveedores')->paginate(5);
+        $compras = Compras::with('usuario')->with('proveedores')->paginate(5);
         return view('compras.index', compact('compras'));
     }
 
@@ -22,8 +22,7 @@ class ComprasController extends Controller
      */
     public function create()
     {
-        $productos = Productos::where('estado', true)->paginate(5);
-        return view('compras.nuevaCompra', compact('productos'));
+        
     }
 
     /**

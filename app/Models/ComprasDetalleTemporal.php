@@ -9,7 +9,7 @@ class ComprasDetalleTemporal extends Model
 {
     use HasFactory;
 
-    protected $table = 'compras_datalle_temporals';
+    protected $table = 'compras_detalle_temporals';
 
     protected $fillable = [
         'usuario_id',

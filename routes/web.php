@@ -50,5 +50,10 @@ Route::group(['middleware' => ['auth']], function () {
 
     //COMPRAS 
     Route::get('/compras', [App\Http\Controllers\ComprasController::class, 'index']);
-    Route::get('/compras/registrar', [App\Http\Controllers\ComprasController::class, 'create']);
+    Route::get('/compras/registrar', [App\Http\Controllers\ComprasDetalleTemporalController::class, 'create']);
+    Route::get('/compras/add-carrito/{id}', [App\Http\Controllers\ComprasDetalleTemporalController::class, 'carrito']);
+    Route::get('/compras/remove-carrito/{id}', [App\Http\Controllers\ComprasDetalleTemporalController::class, 'removeCarrito']);
+    Route::get('/compras/incrementar-carrito/{id}', [App\Http\Controllers\ComprasDetalleTemporalController::class, 'addCantidad']);
+    Route::get('/compras/decrementar-carrito/{id}', [App\Http\Controllers\ComprasDetalleTemporalController::class, 'restarCantidad']);
+    Route::post('/compras/guardar', [App\Http\Controllers\ComprasDetalleTemporalController::class, 'terminarCompra']);
 });
