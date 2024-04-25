@@ -44,14 +44,11 @@
                                         </td>
                                         <td>
                                             {{-- editar --}}
-                                            <a href="#"
-                                                class="btn btn-sm btn-warning">Detalle</a>
+                                            <a href="{{ url('/ventas/ver/' . $item->id) }}" class="btn btn-sm btn-warning">Detalle</a>
                                             @if ($item->estado == true)
-                                                <a href="#"
-                                                    class="btn btn-sm btn-danger">Inhab</a>
+                                                <a href="{{ url('/ventas/estado/' . $item->id) }}" class="btn btn-sm btn-danger">Inhab</a>
                                             @else
-                                                <a href="#"
-                                                    class="btn btn-sm btn-primary">Hab</a>
+                                                <a href="{{ url('/ventas/estado/' . $item->id) }}" class="btn btn-sm btn-primary">Hab</a>
                                             @endif
                                         </td>
                                     </tr>

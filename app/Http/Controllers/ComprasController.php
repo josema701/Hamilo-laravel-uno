@@ -23,7 +23,7 @@ class ComprasController extends Controller
      */
     public function create()
     {
-        
+
     }
 
     /**
@@ -73,7 +73,7 @@ class ComprasController extends Controller
         if($item->save())
         {
             return redirect('/compras')->with('success', 'Estado modificado correctamente.');
-        }{
+        } else {
             return redirect('/compras')->with('error', 'No se puede modificar el estado.');
         }
     }

@@ -40,7 +40,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::put('/proveedores/actualizar/{id}', [App\Http\Controllers\ProveedorController::class, 'update']);
     Route::get('/proveedores/estado/{id}', [App\Http\Controllers\ProveedorController::class, 'cambiarEstado']);
 
-    // CLIENTES 
+    // CLIENTES
     Route::get('/clientes', [App\Http\Controllers\ClienteController::class, 'index']);
     Route::get('/clientes/registrar', [App\Http\Controllers\ClienteController::class, 'create']);
     Route::post('/clientes', [App\Http\Controllers\ClienteController::class, 'store']);
@@ -48,7 +48,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::put('/clientes/{id}', [App\Http\Controllers\ClienteController::class, 'update']);
     Route::get('/clientes/estado/{id}', [App\Http\Controllers\ClienteController::class, 'cambiarEstado']);
 
-    //COMPRAS 
+    //COMPRAS
     Route::get('/compras', [App\Http\Controllers\ComprasController::class, 'index']);
     Route::get('/compras/registrar', [App\Http\Controllers\ComprasDetalleTemporalController::class, 'create']);
     Route::get('/compras/add-carrito/{id}', [App\Http\Controllers\ComprasDetalleTemporalController::class, 'carrito']);
@@ -67,4 +67,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/ventas/decrementar-carrito/{id}', [App\Http\Controllers\VentasDetalleTemporalController::class, 'restarCantidad']);
     Route::get('/ventas/remove-carrito/{id}', [App\Http\Controllers\VentasDetalleTemporalController::class, 'removeCarrito']);
     Route::post('/ventas/guardar', [App\Http\Controllers\VentasDetalleTemporalController::class, 'terminarVenta']);
+
+    Route::get('/ventas/ver/{id}', [App\Http\Controllers\VentasController::class, 'show']);
+    Route::get('/ventas/estado/{id}', [App\Http\Controllers\VentasController::class, 'estado']);
+
 });
