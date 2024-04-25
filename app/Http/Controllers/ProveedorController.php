@@ -41,7 +41,6 @@ class ProveedorController extends Controller
 
     public function edit($id){
         $proveedor = Proveedor::find($id);
-        dd($proveedor->id);
         return view('proveedores.edit', compact('proveedor'));
     }
 

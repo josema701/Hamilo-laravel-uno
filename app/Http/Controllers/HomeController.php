@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use DB;
+
 use App\Models\Ventas;
 use App\Models\Cliente;
 use App\Models\Compras;
 use App\Models\Productos;
 use Illuminate\Http\Request;
 use App\Models\VentasDetalle;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
