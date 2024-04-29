@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\VentasController;
 use App\Http\Controllers\Api\ClienteController;
 use App\Http\Controllers\Api\ComprasController;
+use App\Http\Controllers\Api\DashboardController;
 use App\Http\Controllers\Api\ProductosController;
 use App\Http\Controllers\Api\ProveedorController;
 
@@ -63,4 +64,7 @@ Route::group(["middleware" => "auth:sanctum"], function () {
     Route::post('/ventas', [VentasController::class, 'store']);
     Route::get('/ventas/{id}', [VentasController::class, 'show']);
     Route::delete('/ventas/{id}', [VentasController::class, 'destroy']);
+
+    // API DASHBOARD
+    Route::get('/dashboard', [DashboardController::class, 'dashboard']);
 });

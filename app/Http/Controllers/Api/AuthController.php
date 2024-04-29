@@ -21,7 +21,7 @@ class AuthController extends Controller
         $usuario = $request->user();
         $token = $usuario->createToken('Personal token');
         $tokenResult = $token->plainTextToken;
-        return response()->json(["mensaje" => "Usuario logueado correctamente.", "accsess_token" => $tokenResult, "user" => $usuario, "token_type" => "Bearer"], 200);
+        return response()->json(["mensaje" => "Usuario logueado correctamente.", "access_token" => $tokenResult, "user" => $usuario, "token_type" => "Bearer"], 200);
     }
     public function cerrarSesion()
     {
